@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
-import { BannerDiv, BannerHeader, ProductsContainer, Card, ProductTitle, Price, ShopButton } from './collection-template.styles'
+import { BannerDiv, BannerHeader, ProductsContainer, Card, ProductTitle, Price, ShopButton, linkStyles } from './collection-template.styles'
 
 export const query = graphql`
     query($slug: String!) {
@@ -42,7 +42,7 @@ export default function CollectionTemplate({ data }) {
                     <GatsbyImage image={productRef.mainImage.gatsbyImageData} alt="product-card-image" />
                     <ProductTitle>{productRef.title}</ProductTitle>
                     <Price>${productRef.currentPrice} {productRef.compareAtPrice && <p>${productRef.compareAtPrice}</p>}</Price>
-                    <Link to={`/${productRef.slug}`}><ShopButton>Go To Product</ShopButton></Link>
+                    <Link to={`/${productRef.slug}`} css={linkStyles}><ShopButton>Go To Product</ShopButton></Link>
                     
                 </Card>
             ))}

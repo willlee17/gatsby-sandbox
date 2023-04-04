@@ -1,7 +1,7 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
-import { ProductContainer, ChildDiv, Title, Price, AddToCartButton, FreeShipping } from './product-template.styles';
+import { ProductContainer, ChildDiv, Title, Price, AddToCartButton, FreeShipping, BreadCrumbs, linkStyles } from './product-template.styles';
 
 export const query = graphql`
     query($slug: String!) {
@@ -13,6 +13,9 @@ export const query = graphql`
             description {
               description
             }
+            collection {
+                slug
+            }
             mainImage {
               url
               gatsbyImageData(width: 400, placeholder: BLURRED)
@@ -22,7 +25,9 @@ export const query = graphql`
 `
 
 export default function ProductTemplate({ data }) {
-    const { mainImage, title, currentPrice, compareAtPrice, description } = data.contentfulProduct;
+    const { mainImage, title, currentPrice, compareAtPrice, description, collection } = data.contentfulProduct;
+
+    const breadCrumbText = collection[0].slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ' )
 
     return (
         <ProductContainer>
@@ -30,7 +35,7 @@ export default function ProductTemplate({ data }) {
                 <GatsbyImage image={mainImage.gatsbyImageData} alt="product-image"/>
             </ChildDiv>
             <ChildDiv>
-                <p>BREADCRUMBS / BREADCRUMBS / BREADCRUMBS </p>
+                <BreadCrumbs><Link to="/" css={linkStyles}>Home</Link> / <Link to={`/collections/${collection[0].slug}`} css={linkStyles}>{breadCrumbText}</Link> /  </BreadCrumbs>
                 <Title>{title}</Title>    
                 <Price>${currentPrice} {compareAtPrice && <p>${compareAtPrice}</p>}</Price>
                 <AddToCartButton>ADD TO CART</AddToCartButton>

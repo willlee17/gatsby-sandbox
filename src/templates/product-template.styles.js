@@ -1,4 +1,5 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export const ProductContainer = styled.div`
     border: 1px solid black;
@@ -43,4 +44,13 @@ export const AddToCartButton = styled.button`
 export const FreeShipping = styled.p`
     font-size: 0.8rem;  
     text-align: center;
+`
+
+export const BreadCrumbs = styled.div`
+    margin-top: 1rem;
+`
+
+export const linkStyles = css`
+    color: black;
+    text-decoration: none;
 `

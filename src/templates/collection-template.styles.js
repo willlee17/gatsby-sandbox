@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { css } from '@emotion/react';
 
 
 export const BannerDiv = styled.div`
@@ -47,4 +48,9 @@ export const Price = styled.div`
 export const ShopButton = styled.p`
     margin-left: 0.5rem;    
     margin-bottom: 1rem;
+`
+
+export const linkStyles = css`
+    color: black;
+    text-decoration: none;
 `
