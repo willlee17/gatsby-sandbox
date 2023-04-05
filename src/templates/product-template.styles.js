@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 export const ProductContainer = styled.div`
-    border: 1px solid black;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     gap: 1rem;
     max-width: 800px;
@@ -47,10 +47,16 @@ export const FreeShipping = styled.p`
 `
 
 export const BreadCrumbs = styled.div`
-    margin-top: 1rem;
+    margin-top: 0.1rem;
 `
 
 export const linkStyles = css`
     color: black;
     text-decoration: none;
+`
+export const Accordion = styled.button`
+    border: none;
+    background-color: white;
+    width: 100%;
+    text-align: left;
 `

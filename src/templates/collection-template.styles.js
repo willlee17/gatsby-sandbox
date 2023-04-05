@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 
 export const BannerDiv = styled.div`
     display: flex;
-    border: 1px solid black;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 `
 
 export const BannerHeader = styled.div`

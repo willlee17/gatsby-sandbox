@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
-import { ProductContainer, ChildDiv, Title, Price, AddToCartButton, FreeShipping, BreadCrumbs, linkStyles } from './product-template.styles';
+import { ProductContainer, ChildDiv, Title, Price, AddToCartButton, FreeShipping, BreadCrumbs, linkStyles, Accordion } from './product-template.styles';
 
 export const query = graphql`
     query($slug: String!) {
@@ -25,9 +25,15 @@ export const query = graphql`
 `
 
 export default function ProductTemplate({ data }) {
+    const [ isOpen, setIsOpen ] = useState(false);
+
     const { mainImage, title, currentPrice, compareAtPrice, description, collection } = data.contentfulProduct;
 
     const breadCrumbText = collection[0].slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ' )
+
+    const toggleAccordion = () => {
+        setIsOpen(!isOpen)
+    }
 
     return (
         <ProductContainer>
@@ -40,9 +46,10 @@ export default function ProductTemplate({ data }) {
                 <Price>${currentPrice} {compareAtPrice && <p>${compareAtPrice}</p>}</Price>
                 <AddToCartButton>ADD TO CART</AddToCartButton>
                 <FreeShipping>Free shipping on orders over $50. Free returns. </FreeShipping>
-                <div>
-                    <p>{description.description}</p>
-                </div>
+                <hr/>
+                <Accordion  onClick={toggleAccordion}>Description</Accordion>
+                {isOpen && <p>{description.description}</p>}
+                <hr/>
             </ChildDiv>
         </ProductContainer>
     )   
